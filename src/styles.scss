@@ -1,0 +1,40 @@
+.menu {
+	margin-bottom: 10px;
+}
+
+li.teams-menu-option,
+li.menu-option {
+    display: inline-block;
+    width: 100px;
+    padding: 10px;
+    font-size: 12pt;
+    font-family: helvetica;
+    text-align: center;
+    border-bottom: solid 2px transparent;
+}
+
+li.teams-menu-option:hover,
+li.menu-option:hover {
+	cursor: pointer;
+	/*background-color: lightgray; */
+	border-bottom: solid 2px lightgray;
+
+}
+
+li.teams-menu-option.selected,
+li.menu-option.selected {
+	border-bottom: solid 2px darkorange;
+}
+
+.team-visualization-axis {
+	margin-left: 100px;
+}
+
+.team-visualization-axis .tick text {
+	text-anchor: middle;
+	font-size: 6pt;
+}
+
+.team-visualization-axis .tick line {
+	stroke: rgba(0,0,0,.35);
+}
