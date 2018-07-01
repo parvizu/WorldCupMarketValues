@@ -1,5 +1,6 @@
 [{
 	"country": "Mexico",
+	"code": "mex",
 	"players": [
 		{
 			"number": 13,
@@ -304,6 +305,7 @@
 	]
 }, {
 	"country": "Germany",
+	"code": "ger",
 	"players": [
 		{
 			"number": 22,
@@ -608,6 +610,7 @@
 	]
 }, {
 	"country": "France",
+	"code": "fra",
 	"players": [
 		{
 			"number": 1,
@@ -912,6 +915,7 @@
 	]
 }, {
 	"country": "Spain",
+	"code": "spa",
 	"players": [
 		{
 			"number": 1,
@@ -1216,6 +1220,7 @@
 	]
 }, {
 	"country": "Brazil",
+	"code": "bra",
 	"players": [
 		{
 			"number": 1,
@@ -1520,6 +1525,7 @@
 	]
 }, {
 	"country": "England",
+	"code": "eng",
 	"players": [
 		{
 			"number": 1,
@@ -1824,6 +1830,7 @@
 	]
 }, {
 	"country": "Belgium",
+	"code": "bel",
 	"players": [
 		{
 			"number": 1,
@@ -2128,6 +2135,7 @@
 	]
 }, {
 	"country": "Argentina",
+	"code": "arg",
 	"players": [
 		{
 			"number": 12,
@@ -2432,6 +2440,7 @@
 	]
 }, {
 	"country": "Portugal",
+	"code": "por",
 	"players": [
 		{
 				"number": 12,
@@ -2736,6 +2745,7 @@
 		]
 }, {
 	"country": "Uruguay",
+	"code": "uru",
 	"players": [
 		{
 				"number": 1,
@@ -3040,6 +3050,7 @@
 		]
 }, {
 	"country": "Croatia",
+	"code": "cro",
 	"players": [
 		{
 				"number": 12,
@@ -3344,6 +3355,7 @@
 		]
 },{
 	"country": "Senegal",
+	"code": "sen",
 	"players": [
 		{
 			"number": 23,
@@ -3648,6 +3660,7 @@
 	]
 }, {
 	"country": "Serbia",
+	"code": "ser",
 	"players": [
 		{
 				"number": 23,
@@ -3952,6 +3965,7 @@
 		]
 }, {
 	"country": "Poland",
+	"code": "pol",
 	"players": [
 		{
 				"number": 1,
@@ -4256,6 +4270,7 @@
 		]
 }, {
 	"country": "Denmark",
+	"code": "den",
 	"players": [
 		{
 				"number": 1,
@@ -4560,6 +4575,7 @@
 		]
 }, {
 	"country": "Colombia",
+	"code": "col",
 	"players": [
 		{
 				"number": 1,
@@ -4864,6 +4880,7 @@
 		]
 }, {
 	"country": "Switzerland",
+	"code": "swi",
 	"players": [
 		{
 				"number": 1,
@@ -5168,6 +5185,7 @@
 		]
 }, {
 	"country": "Egypt",
+	"code": "egy",
 	"players": [
 		{
 				"number": 23,
@@ -5472,6 +5490,7 @@
 		]
 }, {
 	"country": "Russia",
+	"code": "rus",
 	"players": [
 		{
 				"number": 1,
@@ -5776,6 +5795,7 @@
 		]
 }, {
 	"country": "Nigeria",
+	"code": "nig",
 	"players": [
 		{
 				"number": 16,
@@ -6080,6 +6100,7 @@
 		]
 }, {
 	"country": "Morocco",
+	"code": "mor",
 	"players": [
 		{
 				"number": 1,
@@ -6384,6 +6405,7 @@
 		]
 }, {
 	"country": "Sweden",
+	"code": "swe",
 	"players": [
 		{
 				"number": 12,
@@ -6688,6 +6710,7 @@
 		]
 }, {
 	"country": "South Korea",
+	"code": "kor",
 	"players": [
 		{
 				"number": 1,
@@ -6992,6 +7015,7 @@
 		]
 }, {
 	"country": "Iceland",
+	"code": "ice",
 	"players": [
 		{
 				"number": 13,
@@ -7296,6 +7320,7 @@
 		]
 }, {
 	"country": "Japan",
+	"code": "jap",
 	"players": [
 		{
 				"number": 23,
@@ -7600,6 +7625,7 @@
 		]
 }, {
 	"country": "Tunisia",
+	"code": "tun",
 	"players": [
 		{
 				"number": 22,
@@ -7904,6 +7930,7 @@
 		]
 }, {
 	"country": "Australia",
+	"code": "aus",
 	"players": [
 		{
 				"number": 1,
@@ -8208,6 +8235,7 @@
 		]
 }, {
 	"country": "Iran",
+	"code": "ira",
 	"players": [
 		{
 				"number": 1,
@@ -8512,6 +8540,7 @@
 		]
 }, {
 	"country": "Costa Rica",
+	"code": "cos",
 	"players": [
 		{
 				"number": 1,
@@ -8816,6 +8845,7 @@
 		]
 }, {
 	"country": "Peru",
+	"code": "per",
 	"players": [
 		{
 				"number": 1,
@@ -9120,6 +9150,7 @@
 		]
 }, {
 	"country": "Saudi Arabia",
+	"code": "sau",
 	"players": [
 		{
 				"number": 22,
@@ -9424,6 +9455,7 @@
 		]
 }, {
 	"country": "Panama",
+	"code": "pan",
 	"players": [
 		{
 				"number": 1,
