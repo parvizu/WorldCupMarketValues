@@ -25,16 +25,3 @@ li.teams-menu-option.selected,
 li.menu-option.selected {
 	border-bottom: solid 2px darkorange;
 }
-
-.team-visualization-axis {
-	margin-left: 100px;
-}
-
-.team-visualization-axis .tick text {
-	text-anchor: middle;
-	font-size: 6pt;
-}
-
-.team-visualization-axis .tick line {
-	stroke: rgba(0,0,0,.35);
-}

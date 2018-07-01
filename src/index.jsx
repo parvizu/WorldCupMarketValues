@@ -16,10 +16,10 @@ export default class WorldCupMarketValue extends Component {
 
 		this.state = {
 			rosters: wcRosters,
-			selectedTeams: ['Mexico', 'Sweden','Argentina'],
+			selectedTeams: ['Mexico', 'Spain'],
 			selectedRosters: [],
 			criteria: 'value',
-			scale: null,
+			scales: {},
 			minimums: {
 				age: 16,
 				caps: 0,
@@ -29,35 +29,29 @@ export default class WorldCupMarketValue extends Component {
 			}
 		}
 
-		this.getScale = this.getScale.bind(this);
+		this.getScales = this.getScales.bind(this);
 		this.getTeamsMenu = this.getTeamsMenu.bind(this);
 		this.getAllPlayersSelected = this.getAllPlayersSelected.bind(this);
-		this.getTeamsVisualization = this.getTeamsVisualization.bind(this);
+		// this.getTeamsVisualization = this.getTeamsVisualization.bind(this);
 		this.handleMenuClick = this.handleMenuClick.bind(this);
 		this.handleTeamClick = this.handleTeamClick.bind(this);
-		this.renderAxis = this.renderAxis.bind(this);
+		// this.renderAxis = this.renderAxis.bind(this);
 	}
 
 	componentWillMount() {
-		const xScale = this.getScale(this.state.criteria);
+		const scales = this.getScales(this.state.criteria, this.state.selectedTeams);
+
 		this.setState({
-			scale: xScale
+			scales: scales
 		});
 	}
 
-	getScale(criteria) {
+	getScales(criteria, selectedTeams) {
 		const selectedRosters = this.getAllPlayersSelected();
 		let maxValue = d3.max(selectedRosters.map(p => p[criteria]));
 
 		if (maxValue > 1000000) {
-			console.log('Max', maxValue);
 			let roundUp = (maxValue/1000000);
-			console.log('RoundUp', roundUp);
-
-			console.log('Ceil', Math.ceil(roundUp));
-
-			console.log('Ceil Roundup', Math.ceil(roundUp)*1000000);
-
 			maxValue = Math.ceil(roundUp)*1000000;
 		}
 
@@ -65,7 +59,15 @@ export default class WorldCupMarketValue extends Component {
 			.domain([this.state.minimums[criteria],maxValue])
 			.range([25, 775]);
 
-		return xScale;
+		const yScale = d3.scale.ordinal()
+			.domain(selectedTeams)
+			.rangeRoundBands([50, selectedTeams.length * 100 + 50])
+
+
+		return {
+			x: xScale,
+			y: yScale
+		};
 	}
 
 	getAllPlayersSelected() {
@@ -80,24 +82,12 @@ export default class WorldCupMarketValue extends Component {
 
 	}
 
-	getTeamsVisualization() {
-		const teams = this.state.rosters.filter(team => {
-			return this.state.selectedTeams.indexOf(team.country) !== -1; 
-		});
-
-		return teams.map(t => {
-			return (
-				<TeamVisualization teamData={t} scale={this.state.scale} criteria={this.state.criteria}/>
-			)
-		})
-	}
-
 	handleMenuClick(e) {
 		e.preventDefault();
 
 		const newCriteria = e.target.attributes['data-value'].value;
 
-		const newScale = this.getScale(newCriteria);
+		const newScales = this.getScales(newCriteria);
 
 		this.setState({
 			criteria: newCriteria,
@@ -128,15 +118,20 @@ export default class WorldCupMarketValue extends Component {
 		const team = e.target.attributes['data-value'].value;
 
 		let selectedTeams = this.state.selectedTeams;
-		if (selectedTeams.indexOf(team) !== -1) {
-
+		const position = selectedTeams.indexOf(team);
+		if (position !== -1) {
+			selectedTeams.splice(position,1);
 		} else {
 			selectedTeams.push(team);
 		}
 
 		console.log(selectedTeams);
+
+		const newScales = this.getScales(this.state.criteria, selectedTeams);
+
 		this.setState({
-			selectedTeams: selectedTeams
+			selectedTeams: selectedTeams,
+			scales: newScales
 		});
 		// const newScale = this.getScale(this.state.criteria);
 		// this.setState({
@@ -158,43 +153,51 @@ export default class WorldCupMarketValue extends Component {
 		})
 	}
 
-	renderAxis() {
-		const node = ReactFauxDom.createElement('div')
+	// renderAxis() {
+	// 	const node = ReactFauxDom.createElement('div')
 
-		const svg = d3.select(node).append('svg')
-			.attr({
-				width:800,
-				height:50,
-				class: 'team-visualization-axis'
-			});
+	// 	const svg = d3.select(node).append('svg')
+	// 		.attr({
+	// 			width:800,
+	// 			height:50,
+	// 			class: 'team-visualization-axis'
+	// 		});
 
-		const xScale = this.state.scale;
+	// 	const xScale = this.state.scale;
 
-		const xAxis = d3.svg.axis()
-			.scale(xScale)
-			.orient('top')
-			// .ticks(10)
-			.tickSize(12);
+	// 	const xAxis = d3.svg.axis()
+	// 		.scale(xScale)
+	// 		.orient('top')
+	// 		// .ticks(10)
+	// 		.tickSize(12);
 
-		const customXAxis = (g) => {
-			g.call(xAxis);
-			g.select(".domain").remove();
-			g.selectAll(".tick line").attr("stroke", "#777").attr("stroke-dasharray", "1,1");
-			// g.selectAll(".tick text").attr("x", 4).attr("dy", -4);
-		}
+	// 	const customXAxis = (g) => {
+	// 		g.call(xAxis);
+	// 		g.select(".domain").remove();
+	// 		g.selectAll(".tick line").attr("stroke", "#777").attr("stroke-dasharray", "1,1");
+	// 		// g.selectAll(".tick text").attr("x", 4).attr("dy", -4);
+	// 	}
 
-		svg.append('g')
-			.attr({
-				class: 'x axis',
-				transform: 'translate(0,25)'
-			})
-			.call(customXAxis);
+	// 	svg.append('g')
+	// 		.attr({
+	// 			class: 'x axis',
+	// 			transform: 'translate(0,25)'
+	// 		})
+	// 		.call(customXAxis);
 
-		return node.toReact();
-	}
+	// 	return node.toReact();
+	// }
+
 
 	render() {
-		const mexico = this.state.rosters[1];
+		const teams = this.state.rosters.filter(team => {
+			return this.state.selectedTeams.indexOf(team.country) !== -1; 
+		});
+
+		const selectedTeams = teams.map(team => {
+			return team.country;
+		})
+
 		return (
 			<div>
 				<div className="teams">{this.getTeamsMenu()}</div>
@@ -202,8 +205,12 @@ export default class WorldCupMarketValue extends Component {
 				<div className="menu">
 					{ this.getMenuOptions() }
 				</div>
-				{ this.renderAxis() }
-				{ this.getTeamsVisualization() }
+				
+				<TeamVisualization teamData={teams} 
+					selectedTeams={selectedTeams}
+					scales={this.state.scales} 
+					criteria={this.state.criteria} 
+					size={[800,this.state.selectedTeams.length*100+50]}/>
 			</div>
 		);
 	}
