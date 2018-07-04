@@ -1,27 +1,179 @@
+body {
+	margin: 0px;
+	font-family: Helvetica;
+}
+
+@font-face {
+    font-family: 'WCFont';
+    /*font-weight: $font-weight-regular;*/
+    src: url("/WCFont.ttf");
+}
+
+.header {
+    padding: 10px;
+    background-color: #015386;
+    width: 100%;
+    /* height: 80px; */
+    border-bottom: solid thin #D30208;
+    /* vertical-align: baseline; */
+    font-family: WCFont;
+    color: #D30208;
+    font-weight: 4000;
+    font-size: 40px;
+}
+
+.header p {
+	display: inline-block;
+	margin: 0px;
+	vertical-align: bottom;
+	text-shadow: 1px 1px black;
+}
+
+.header p span {
+	color: white;
+}
+
+.header img {
+	height: 60px;
+	vertical-align: middle;
+}
+
+img#fifa-logo {
+	float: right;
+	/*background-color: rgba(255,255,255,.2);*/
+	/*padding: 5px;*/
+	right: 20px;
+}
+
+#app-container {
+	margin: 0 auto;
+	padding: 20px 5px;
+	width: 1200px;
+	vertical-align: top;
+}
+
+.teams-menu,
+.main-content {
+	display: inline-block;
+	vertical-align: top;
+}
+
 .menu {
 	margin-bottom: 10px;
+}
+
+li.menu-option {
+	width: 100px;
+}
+
+div.teams-menu {
+    /* height: 50px; */
+    overflow: hidden;
+    padding-bottom: -1px;
+    /* border-bottom: solid 1px black; */
+    /* padding: 0px 15px; */
+    width: 300px;
+    /* margin: 0 auto; */
+}
+
+.teams-menu .groups {
+    width: 255px;
+    /* margin: 0 auto; */
+    display: inline-block;
+    /* margin: 5px 12px; */
+    /*border-bottom: solid 1px black;*/
+    /* height: 45px; */
+    overflow: hidden;
+    height: 42px;
+    text-align: center;
+    margin: 15px 0px 0px 0px;
+}
+
+.teams-menu .group-label {
+    width: 251px;
+    text-align: center;
+    font-size: 8pt;
+    font-family: Helvetica;
+    font-weight: 800;
+    opacity: .5;
+    /*background-color: lightgray;*/
+    background-color: #E5C685;
+    padding: 3px;
+    margin: 0px;
+}
+
+li.teams-menu-option {
+    filter: grayscale(98%);
+    width: 50px;
+    z-index: 10;
+    /* overflow: hidden; */
+    /* height: 100px; */
+    vertical-align: middle;
+    position: relative;
+    /* top: 7px; */
+    height: 100px;
 }
 
 li.teams-menu-option,
 li.menu-option {
     display: inline-block;
-    width: 100px;
-    padding: 10px;
+    /*padding: 10px;*/
     font-size: 12pt;
     font-family: helvetica;
     text-align: center;
     border-bottom: solid 2px transparent;
 }
 
+li.teams-menu-option.selected {
+    filter: grayscale(0%);
+    /* background-color: blue; */
+    /* border-bottom: solid 2px darkorange; */
+    top: auto;
+    z-index: 1;
+}
+
+
+li.teams-menu-option img {
+    width: 65px;
+    margin: 0px;
+    position: relative;
+    top: 15px;
+    /* z-index: -2; */
+    /* left: -5px; */
+}
+
+li.teams-menu-option.selected img {
+    width: 90px;
+    left: -12px;
+    /* z-index: -10; */
+    /* position: relative; */
+    top: 2px;
+}
+
 li.teams-menu-option:hover,
 li.menu-option:hover {
 	cursor: pointer;
 	/*background-color: lightgray; */
-	border-bottom: solid 2px lightgray;
+	/*border-bottom: solid 2px lightgray;*/
 
 }
 
-li.teams-menu-option.selected,
-li.menu-option.selected {
+li.teams-menu-option.selected, 
+li.teams-menu-option:hover {
+    /* width: 50px; */
+    filter: grayscale(0%);
+    /*z-index: 1;*/
+}
+
+
+
+
+/*li.teams-menu-option.selected {
 	border-bottom: solid 2px darkorange;
-}
+}*/
+
+
+
+
+
+

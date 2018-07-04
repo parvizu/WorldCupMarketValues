@@ -1,6 +1,7 @@
 [{
 	"country": "Mexico",
 	"code": "mex",
+	"group": "F",
 	"players": [
 		{
 			"number": 13,
@@ -306,6 +307,7 @@
 }, {
 	"country": "Germany",
 	"code": "ger",
+	"group": "F",
 	"players": [
 		{
 			"number": 22,
@@ -611,6 +613,7 @@
 }, {
 	"country": "France",
 	"code": "fra",
+	"group": "C",
 	"players": [
 		{
 			"number": 1,
@@ -915,7 +918,8 @@
 	]
 }, {
 	"country": "Spain",
-	"code": "spa",
+	"code": "esp",
+	"group": "B",
 	"players": [
 		{
 			"number": 1,
@@ -1221,6 +1225,7 @@
 }, {
 	"country": "Brazil",
 	"code": "bra",
+	"group": "E",
 	"players": [
 		{
 			"number": 1,
@@ -1526,6 +1531,7 @@
 }, {
 	"country": "England",
 	"code": "eng",
+	"group": "G",
 	"players": [
 		{
 			"number": 1,
@@ -1831,6 +1837,7 @@
 }, {
 	"country": "Belgium",
 	"code": "bel",
+	"group": "G",
 	"players": [
 		{
 			"number": 1,
@@ -2136,6 +2143,7 @@
 }, {
 	"country": "Argentina",
 	"code": "arg",
+	"group": "D",
 	"players": [
 		{
 			"number": 12,
@@ -2441,6 +2449,7 @@
 }, {
 	"country": "Portugal",
 	"code": "por",
+	"group": "B",
 	"players": [
 		{
 				"number": 12,
@@ -2746,6 +2755,7 @@
 }, {
 	"country": "Uruguay",
 	"code": "uru",
+	"group": "A",
 	"players": [
 		{
 				"number": 1,
@@ -3051,6 +3061,7 @@
 }, {
 	"country": "Croatia",
 	"code": "cro",
+	"group": "D",
 	"players": [
 		{
 				"number": 12,
@@ -3356,6 +3367,7 @@
 },{
 	"country": "Senegal",
 	"code": "sen",
+	"group": "H",
 	"players": [
 		{
 			"number": 23,
@@ -3660,7 +3672,8 @@
 	]
 }, {
 	"country": "Serbia",
-	"code": "ser",
+	"code": "srb",
+	"group": "E",
 	"players": [
 		{
 				"number": 23,
@@ -3966,6 +3979,7 @@
 }, {
 	"country": "Poland",
 	"code": "pol",
+	"group": "H",
 	"players": [
 		{
 				"number": 1,
@@ -4271,6 +4285,7 @@
 }, {
 	"country": "Denmark",
 	"code": "den",
+	"group": "C",
 	"players": [
 		{
 				"number": 1,
@@ -4576,6 +4591,7 @@
 }, {
 	"country": "Colombia",
 	"code": "col",
+	"group": "H",
 	"players": [
 		{
 				"number": 1,
@@ -4880,7 +4896,8 @@
 		]
 }, {
 	"country": "Switzerland",
-	"code": "swi",
+	"code": "sui",
+	"group": "E",
 	"players": [
 		{
 				"number": 1,
@@ -5186,6 +5203,7 @@
 }, {
 	"country": "Egypt",
 	"code": "egy",
+	"group": "A",
 	"players": [
 		{
 				"number": 23,
@@ -5491,6 +5509,7 @@
 }, {
 	"country": "Russia",
 	"code": "rus",
+	"group": "A",
 	"players": [
 		{
 				"number": 1,
@@ -5795,7 +5814,8 @@
 		]
 }, {
 	"country": "Nigeria",
-	"code": "nig",
+	"code": "nga",
+	"group": "D",
 	"players": [
 		{
 				"number": 16,
@@ -6100,7 +6120,8 @@
 		]
 }, {
 	"country": "Morocco",
-	"code": "mor",
+	"code": "mar",
+	"group": "B",
 	"players": [
 		{
 				"number": 1,
@@ -6406,6 +6427,7 @@
 }, {
 	"country": "Sweden",
 	"code": "swe",
+	"group": "F",
 	"players": [
 		{
 				"number": 12,
@@ -6711,6 +6733,7 @@
 }, {
 	"country": "South Korea",
 	"code": "kor",
+	"group": "F",
 	"players": [
 		{
 				"number": 1,
@@ -7015,7 +7038,8 @@
 		]
 }, {
 	"country": "Iceland",
-	"code": "ice",
+	"code": "isl",
+	"group": "D",
 	"players": [
 		{
 				"number": 13,
@@ -7320,7 +7344,8 @@
 		]
 }, {
 	"country": "Japan",
-	"code": "jap",
+	"code": "jpn",
+	"group": "H",
 	"players": [
 		{
 				"number": 23,
@@ -7626,6 +7651,7 @@
 }, {
 	"country": "Tunisia",
 	"code": "tun",
+	"group": "G",
 	"players": [
 		{
 				"number": 22,
@@ -7931,6 +7957,7 @@
 }, {
 	"country": "Australia",
 	"code": "aus",
+	"group": "C",
 	"players": [
 		{
 				"number": 1,
@@ -8235,7 +8262,8 @@
 		]
 }, {
 	"country": "Iran",
-	"code": "ira",
+	"code": "irn",
+	"group": "B",
 	"players": [
 		{
 				"number": 1,
@@ -8540,7 +8568,8 @@
 		]
 }, {
 	"country": "Costa Rica",
-	"code": "cos",
+	"code": "crc",
+	"group": "E",
 	"players": [
 		{
 				"number": 1,
@@ -8846,6 +8875,7 @@
 }, {
 	"country": "Peru",
 	"code": "per",
+	"group": "C",
 	"players": [
 		{
 				"number": 1,
@@ -9150,7 +9180,8 @@
 		]
 }, {
 	"country": "Saudi Arabia",
-	"code": "sau",
+	"code": "ksa",
+	"group": "A",
 	"players": [
 		{
 				"number": 22,
@@ -9456,6 +9487,7 @@
 }, {
 	"country": "Panama",
 	"code": "pan",
+	"group": "G",
 	"players": [
 		{
 				"number": 1,

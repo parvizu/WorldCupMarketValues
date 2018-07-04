@@ -11,6 +11,11 @@
 	fill: rgba(0,0,0,.25);
 }
 
+.team-player:hover {
+	cursor: pointer;
+	/*fill: red;*/
+}
+
 .team-visualization .axis {
 	margin-left: 100px;
 }
@@ -23,3 +28,15 @@
 .team-visualization .axis .tick line {
 	stroke: rgba(0,0,0,.35);
 }
+
+.team-mean {
+	fill: gray;
+	font-size: 8pt;
+	font-family: helvetica;
+}
+
+
+.team-player.selected {
+	fill: red;
+}
+

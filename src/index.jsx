@@ -20,11 +20,16 @@ export default class WorldCupMarketValue extends Component {
 			selectedRosters: [],
 			criteria: 'value',
 			scales: {},
+			specs: {
+				teamHeight: 80,
+				vizWidth: 800,
+				labelWidth: 100
+			},
 			minimums: {
 				age: 16,
 				caps: 0,
 				value: 0,
-				height: 1.5,
+				height: 1.6,
 				goals: 0
 			}
 		}
@@ -36,6 +41,7 @@ export default class WorldCupMarketValue extends Component {
 		this.handleMenuClick = this.handleMenuClick.bind(this);
 		this.handleTeamClick = this.handleTeamClick.bind(this);
 		// this.renderAxis = this.renderAxis.bind(this);
+		this.getGroupTeams = this.getGroupTeams.bind(this);
 	}
 
 	componentWillMount() {
@@ -46,22 +52,46 @@ export default class WorldCupMarketValue extends Component {
 		});
 	}
 
+	getMaxCeiling(criteria, value) {
+		let maxValue = 0;
+		let roundUp = 0;
+		if (criteria === 'value') {
+			if (value > 1000000) {
+				roundUp = value%5000000;
+				maxValue = roundUp>0 ? value + (5000000 - roundUp) : value+5000000;
+			} else {
+				maxValue = 1000000;
+			}
+		} else if (criteria === 'goals') {
+			roundUp = value%5;
+			maxValue = roundUp>0 ? value + (5 - roundUp) : value+5;
+		} else if (criteria === 'caps') {
+			roundUp = value%10;
+			maxValue = roundUp>0 ?value + (10 - roundUp) : value+10;
+		} else if (criteria === 'age') {
+			roundUp = value%2;
+			maxValue = roundUp>0 ?value + (2 - roundUp) : value+2;
+		} else if (criteria === 'height') {
+			roundUp = value%.05;
+			maxValue = roundUp>0 ? value + (.05- roundUp) : value + .05;
+		}
+
+		console.log("MAX", maxValue, value);
+		return maxValue;
+	}
+
 	getScales(criteria, selectedTeams) {
 		const selectedRosters = this.getAllPlayersSelected();
 		let maxValue = d3.max(selectedRosters.map(p => p[criteria]));
-
-		if (maxValue > 1000000) {
-			let roundUp = (maxValue/1000000);
-			maxValue = Math.ceil(roundUp)*1000000;
-		}
+		maxValue = this.getMaxCeiling(criteria, maxValue);
 
 		const xScale = d3.scale.linear()
 			.domain([this.state.minimums[criteria],maxValue])
-			.range([25, 775]);
+			.range([(this.state.specs.labelWidth+25), (this.state.specs.vizWidth+75)]);
 
 		const yScale = d3.scale.ordinal()
 			.domain(selectedTeams)
-			.rangeRoundBands([50, selectedTeams.length * 100 + 50])
+			.rangeRoundBands([50, selectedTeams.length * this.state.specs.teamHeight + 50])
 
 
 		return {
@@ -87,11 +117,11 @@ export default class WorldCupMarketValue extends Component {
 
 		const newCriteria = e.target.attributes['data-value'].value;
 
-		const newScales = this.getScales(newCriteria);
+		const newScales = this.getScales(newCriteria, this.state.selectedTeams);
 
 		this.setState({
 			criteria: newCriteria,
-			scale: newScale
+			scales: newScales
 		})
 
 	}
@@ -115,7 +145,9 @@ export default class WorldCupMarketValue extends Component {
 	handleTeamClick(e) {
 		e.preventDefault();
 
+		console.log(e.target);
 		const team = e.target.attributes['data-value'].value;
+
 
 		let selectedTeams = this.state.selectedTeams;
 		const position = selectedTeams.indexOf(team);
@@ -125,7 +157,7 @@ export default class WorldCupMarketValue extends Component {
 			selectedTeams.push(team);
 		}
 
-		console.log(selectedTeams);
+		// console.log(selectedTeams);
 
 		const newScales = this.getScales(this.state.criteria, selectedTeams);
 
@@ -147,47 +179,55 @@ export default class WorldCupMarketValue extends Component {
 				'selected': this.state.selectedTeams.indexOf(team.country) !== -1
 			});
 
+			const imgSrc = '/img/'+team.code+'.png';
 			return (
-				<li className={classes} onClick={this.handleTeamClick} data-value={team.country}>{team.country}</li>
+				<li className={classes} onClick={this.handleTeamClick} data-value={team.country}>
+					<img src={imgSrc} data-value={team.country}/>
+				</li>
 			)
 		})
 	}
 
-	// renderAxis() {
-	// 	const node = ReactFauxDom.createElement('div')
+	getGroupTeams() {
+		const groups = 'ABCDEFGH'.split('');
+		let groupTeams = {
+			'A': [],
+			'B': [],
+			'C': [],
+			'D': [],
+			'E': [],
+			'F': [],
+			'G': [],
+			'H': [],
+		};
 
-	// 	const svg = d3.select(node).append('svg')
-	// 		.attr({
-	// 			width:800,
-	// 			height:50,
-	// 			class: 'team-visualization-axis'
-	// 		});
+		this.state.rosters.forEach(team => {
 
-	// 	const xScale = this.state.scale;
+			const classes = classNames({
+				'teams-menu-option': true,
+				'selected': this.state.selectedTeams.indexOf(team.country) !== -1
+			});
+			const imgSrc = '/img/'+team.code+'.png';
+			groupTeams[team.group].push(
+				<li className={classes} onClick={this.handleTeamClick} data-value={team.country}>
+					<img src={imgSrc} data-value={team.country}/>
+				</li>
+			);
+		});
 
-	// 	const xAxis = d3.svg.axis()
-	// 		.scale(xScale)
-	// 		.orient('top')
-	// 		// .ticks(10)
-	// 		.tickSize(12);
+		return groups.map(group => {
+			const groupLabel = 'Group '+ group;
+			return (
+				<div>
+					<div className="groups">
+						{groupTeams[group]}
+					</div>
+					<div className="group-label">{groupLabel}</div>
+				</div>
+			)
+		});
 
-	// 	const customXAxis = (g) => {
-	// 		g.call(xAxis);
-	// 		g.select(".domain").remove();
-	// 		g.selectAll(".tick line").attr("stroke", "#777").attr("stroke-dasharray", "1,1");
-	// 		// g.selectAll(".tick text").attr("x", 4).attr("dy", -4);
-	// 	}
-
-	// 	svg.append('g')
-	// 		.attr({
-	// 			class: 'x axis',
-	// 			transform: 'translate(0,25)'
-	// 		})
-	// 		.call(customXAxis);
-
-	// 	return node.toReact();
-	// }
-
+	}
 
 	render() {
 		const teams = this.state.rosters.filter(team => {
@@ -197,20 +237,27 @@ export default class WorldCupMarketValue extends Component {
 		const selectedTeams = teams.map(team => {
 			return team.country;
 		})
+		const width = this.state.specs.vizWidth + this.state.specs.labelWidth;
+		const height = this.state.selectedTeams.length * this.state.specs.teamHeight + 50;
 
+		// <div className="teams">{this.getTeamsMenu()}</div>
 		return (
 			<div>
-				<div className="teams">{this.getTeamsMenu()}</div>
-
-				<div className="menu">
-					{ this.getMenuOptions() }
+				<div className="teams-menu">
+					{ this.getGroupTeams() }
 				</div>
-				
-				<TeamVisualization teamData={teams} 
-					selectedTeams={selectedTeams}
-					scales={this.state.scales} 
-					criteria={this.state.criteria} 
-					size={[800,this.state.selectedTeams.length*100+50]}/>
+				<div className="main-content">
+					<div className="menu">
+						{ this.getMenuOptions() }
+					</div>
+					
+					<TeamVisualization teamsData={teams} 
+						selectedTeams={selectedTeams}
+						scales={this.state.scales} 
+						minimums={this.state.minimums}
+						criteria={this.state.criteria} 
+						size={[width,height]}/>
+				</div>
 			</div>
 		);
 	}
