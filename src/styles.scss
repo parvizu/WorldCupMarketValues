@@ -20,6 +20,7 @@ body {
     color: #D30208;
     font-weight: 4000;
     font-size: 40px;
+    min-width: 1500px;
 }
 
 .header p {
@@ -47,23 +48,39 @@ img#fifa-logo {
 
 #app-container {
 	margin: 0 auto;
-	padding: 20px 5px;
-	width: 1200px;
-	vertical-align: top;
+    padding: 20px 5px;
+    width: 100%;
+    min-width: 1500px;
+    vertical-align: top;
+    text-align: center;
 }
 
 .teams-menu,
 .main-content {
 	display: inline-block;
 	vertical-align: top;
+	margin-left: 40px;
 }
 
 .menu {
-	margin-bottom: 10px;
+    margin-bottom: 30px;
+    float: right;
+     margin-right: 100px; 
 }
 
 li.menu-option {
-	width: 100px;
+    color: #D30208;
+    border-bottom: solid 1px #D30208;
+    padding: 5px;
+    font-family: WCFont;
+    font-size: 10pt;
+    width: 100px;
+}
+
+li.menu-option.selected {
+    background-color: #D30208;
+    color: white;
+    /* padding: 5px; */
 }
 
 div.teams-menu {
@@ -72,8 +89,10 @@ div.teams-menu {
     padding-bottom: -1px;
     /* border-bottom: solid 1px black; */
     /* padding: 0px 15px; */
-    width: 300px;
+    width: 260px;
     /* margin: 0 auto; */
+    /*text-align: left;*/
+    /*float: left;*/
 }
 
 .teams-menu .groups {
@@ -92,11 +111,12 @@ div.teams-menu {
 .teams-menu .group-label {
     width: 251px;
     text-align: center;
-    font-size: 8pt;
-    font-family: Helvetica;
+    font-size: 10pt;
+    font-family: WCFont;
     font-weight: 800;
     opacity: .5;
     /*background-color: lightgray;*/
+    /*background-color: #F5EED5;*/
     background-color: #E5C685;
     padding: 3px;
     margin: 0px;
@@ -118,10 +138,10 @@ li.teams-menu-option,
 li.menu-option {
     display: inline-block;
     /*padding: 10px;*/
-    font-size: 12pt;
-    font-family: helvetica;
+    /*font-size: 12pt;*/
+    /*font-family: helvetica;*/
     text-align: center;
-    border-bottom: solid 2px transparent;
+    /*border-bottom: solid 2px transparent;*/
 }
 
 li.teams-menu-option.selected {

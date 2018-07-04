@@ -14,6 +14,7 @@ export default class TeamVisualization extends Component {
 		this.addAxis = this.addAxis.bind(this);
 		this.cleanVisualization = this.cleanVisualization.bind(this);
 		this.addTeamBasicStats = this.addTeamBasicStats.bind(this);
+		// this.getSelectedTeamsLabel = this.getSelectedTeamsLabel.bind(this);
 	}
 
 	componentDidMount() {
@@ -105,11 +106,6 @@ export default class TeamVisualization extends Component {
 				transform: 'translate(0,'+(this.props.size[1]-40)+')'
 			})
 			.call(xAxisBottom);
-
-
- 
-
-
 	}
 
 
@@ -141,13 +137,22 @@ export default class TeamVisualization extends Component {
 					transform: 'translate(0,'+this.props.scales.y(teamData.country)+')'
 				});
 
-		d3.select(node).select('g.'+teamData.code)
+		d3.select(node).select('g.'+teamData.code+' g.team-label')
+			.remove();
+
+		d3.select(node).select('g.'+teamData.code).append('g')
+			.attr({
+				class: 'team-label',
+				transform: 'translate('+(this.props.size[0]-100)+',0)'
+			});
+
+		d3.select(node).select('g.'+teamData.code+' g.team-label')
 			.append('text')
-			.text(teamData.country)
 				.attr({
-					x: 20,
-					y: 5
-				});
+					class: 'team-label-title'
+					// y: -15
+				})
+			.text(teamData.country);
 
 		d3.select(node).select('g.'+teamData.code)
 			.selectAll('circle')
@@ -229,6 +234,17 @@ export default class TeamVisualization extends Component {
 
 	}
 
+	// getSelectedTeamsLabel() {
+	// 	console.log("VIZ TEAMS", this.props.selectedTeams);
+	// 	return this.props.selectedTeams.map(team => {
+	// 		return (
+	// 			<div className="team-label">
+	// 				{team}
+	// 			</div>
+	// 		);
+	// 	})
+	// }
+
 	render() {
 		return (
 			<div>
@@ -237,6 +253,7 @@ export default class TeamVisualization extends Component {
 					height={this.props.size[1]} 
 					ref={node=>this.node=node} >
 				</svg>
+				
 			</div>
 		);
 	}
