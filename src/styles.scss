@@ -20,23 +20,41 @@ body {
     color: #D30208;
     font-weight: 4000;
     font-size: 40px;
-    min-width: 1500px;
+    min-width: 1530px;
 }
 
-.header p {
+.header div {
 	display: inline-block;
 	margin: 0px;
 	vertical-align: bottom;
 	text-shadow: 1px 1px black;
 }
 
-.header p span {
+div.main-title {
+    font-size: 42px;
+    font-family: 'Carrois Gothic SC', sans-serif;
+    margin-left: 90px;
+    position: relative;
+    top: 10px;
+    text-shadow: 2px 2px black;
+}
+
+div.wc-right {
+    float: right;
+    margin-top: 28px;
+    font-size: 19pt;
+    margin-right: 25px;
+}
+
+.header div span {
 	color: white;
 }
 
-.header img {
-	height: 60px;
+.header .wc-logo {
+	height: 83px;
 	vertical-align: middle;
+    position: absolute;
+    left: 20px;
 }
 
 img#fifa-logo {
@@ -46,26 +64,100 @@ img#fifa-logo {
 	right: 20px;
 }
 
+
+.header a#madeby {
+    display: inline-block;
+    vertical-align: bottom;
+    padding-bottom: 9px;
+    text-decoration: none;
+    color: white;
+    font-size: 10pt;
+    text-shadow: none;
+}
+
+.header a#madeby:hover,
+.header a#twitterLink {
+    cursor: pointer;
+}
+
+.header #twitterLink img {
+    width: 15px;
+    vertical-align: top;
+    margin-top: 24px;
+}
+
+
+
+.footer {
+    height: 35px;
+    background-color: #015386;
+    width: 100%;
+    margin-top: 30px;
+    text-align: center;
+    vertical-align: middle;
+    color: rgba(255,255,255,1);
+    font-size: 8pt;
+    font-family: helvetica;
+    border-top: solid thin #D30208;
+    min-width: 1550px;
+}
+
+.footer .credits {
+    float: right;
+    margin-right: 50px;
+}
+
+.footer > div {
+    margin-top: 5px;
+    margin: 5px 20px 0px 20px;
+    display: inline-block;
+}
+
+.footer a {
+	text-decoration: none;
+	color: white;
+	margin-left: 10px;
+}
+
+.footer .links {
+    float: left;
+    left: 50px;
+    position: relative;
+}
+
+
+
+
+
+
 #app-container {
-	margin: 0 auto;
+    margin: 0 auto;
     padding: 20px 5px;
     width: 100%;
-    min-width: 1500px;
+    min-width: 1530px;
     vertical-align: top;
     text-align: center;
 }
 
-.teams-menu,
-.main-content {
-	display: inline-block;
-	vertical-align: top;
-	margin-left: 40px;
+.main-desc {
+    margin: 20px 100px 50px 100px;
+    /* max-width: 800px; */
+}
+
+
+
+.teams-menu, .main-content {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 25px;
+    /*padding-top: 10px;*/
+    /* background-color: lightgray; */
 }
 
 .menu {
-    margin-bottom: 30px;
-    float: right;
-     margin-right: 100px; 
+    margin-bottom: 10px;
+    /* float: right; */
+    /* margin-right: 100px; */
 }
 
 li.menu-option {
@@ -74,7 +166,7 @@ li.menu-option {
     padding: 5px;
     font-family: WCFont;
     font-size: 10pt;
-    width: 100px;
+    width: 200px;
 }
 
 li.menu-option.selected {
@@ -91,8 +183,9 @@ div.teams-menu {
     /* padding: 0px 15px; */
     width: 260px;
     /* margin: 0 auto; */
-    /*text-align: left;*/
-    /*float: left;*/
+    /* text-align: left; */
+    /* float: left; */
+    margin-top: 25px;
 }
 
 .teams-menu .groups {

@@ -85,7 +85,7 @@ export default class TeamVisualization extends Component {
 		d3.select(node).append('g')
 			.attr({
 				class: 'x axis top',
-				transform: 'translate(0,'+(this.props.size[1]-40)+')'
+				transform: 'translate(0,'+(this.props.size[1]-30)+')'
 			})
 			.call(customXAxis);
 
@@ -103,7 +103,7 @@ export default class TeamVisualization extends Component {
 		d3.select(node).append('g')
 			.attr({
 				class: 'x axis bottom',
-				transform: 'translate(0,'+(this.props.size[1]-40)+')'
+				transform: 'translate(0,'+(this.props.size[1]-30)+')'
 			})
 			.call(xAxisBottom);
 	}
@@ -123,7 +123,6 @@ export default class TeamVisualization extends Component {
 	addTeamVisualization(teamData,i) {
 
 		const node = this.node;
-		// const xScale = this.props.scale.x;
 
 		d3.select(node).append('g')
 				.attr({
@@ -134,7 +133,7 @@ export default class TeamVisualization extends Component {
 
 		d3.select(node).select('g.'+teamData.code)
 				.attr({
-					transform: 'translate(0,'+this.props.scales.y(teamData.country)+')'
+					transform: 'translate(0,'+(this.props.scales.y(teamData.country)+10)+')'
 				});
 
 		d3.select(node).select('g.'+teamData.code+' g.team-label')
@@ -150,28 +149,126 @@ export default class TeamVisualization extends Component {
 			.append('text')
 				.attr({
 					class: 'team-label-title'
-					// y: -15
 				})
-			.text(teamData.country);
+			.text(teamData.country)
 
-		d3.select(node).select('g.'+teamData.code)
-			.selectAll('circle')
+		// d3.select(node).select('g.'+teamData.code+' g.team-label').append("defs")
+		// 	.append("pattern")
+		// 		.attr({
+		// 	   		id: "team-flag-"+teamData.code,
+		// 	   		height: 30
+		// 	   	})
+		// 	.append("image")
+		// 		.attr("xlink:href", "/img/mex.png");
+
+		// d3.select(node).select('g.'+teamData.code+' g.team-label')
+		// 	.append('rect')
+		// 		.attr({
+		// 			class: 'team-label-flag',
+		// 			width: 50,
+		// 			height:30,
+		// 			y: 5
+		// 		})
+		// 		.style({
+		// 			fill: 'url(#team-flag-'+teamData.code+')'
+		// 		});
+
+
+		
+		// d3.select(node).select('g.'+teamData.code+' g.team-label')
+		// 	.append('text')
+		// 		.attr({
+		// 			class: 'selected-player-name',
+		// 			y: 15
+		// 		})
+		// 		.text('')
+
+		// d3.select(node).select('g.'+teamData.code+' g.team-label')
+		// 	.append('text')
+		// 		.attr({
+		// 			class: 'selected-player-stat',
+		// 			y: 25
+		// 		})
+		// 		.text('')
+
+
+		// PLAYER ELEMENTS
+
+		d3.select(node).select('g.'+teamData.code).selectAll('g.team-player circle')
+			.remove();
+
+		d3.select(node).select('g.'+teamData.code).selectAll('g.team-player text')
+			.remove();
+
+		d3.select(node).select('g.'+teamData.code).selectAll('g.team-player')
 			.data(teamData.players)
 			.enter()
+			.append('g')
+				.attr({
+					class: 'team-player',
+					transform: 'translate('+this.props.scales.x(this.props.minimums[this.props.criteria])+',0)',
+					'player-num': (p) => {
+						return p.number;
+					}
+				})
+			.on('click', (p) => {
+				const selectedPlayer =  d3.select(node).select('g.'+teamData.code+' g[player-num="'+p.number+'"]').attr('class');
+
+				if (!selectedPlayer.includes('selected')) {
+					d3.select(node).selectAll('g.'+teamData.code+' g.team-player').classed('selected', false);
+
+					d3.select(node).select('g.'+teamData.code+' g[player-num="'+p.number+'"]')
+						.classed('selected', true)
+				} else {
+					d3.select(node).selectAll('g.'+teamData.code+' g.team-player').classed('selected', false);
+				}	
+			})
+
+		d3.select(node).select('g.'+teamData.code).selectAll('g.team-player')
 			.append('circle')
 				.attr({
-					cx: this.props.scales.x(this.props.minimums[this.props.criteria]),
-					// cy: this.props.scales.y(teamData.country),
-					r: 15,
-					class: 'team-player'
+					r: 15
+				})
+
+		d3.select(node).select('g.'+teamData.code).selectAll('g.team-player')
+			.append('text')
+				.attr({
+					class: 'player-name',
+					y: 30,
+				})
+				.text((d,i) => {
+					return d.name
 				});
 
-		d3.select(node).selectAll('g.'+teamData.code+' circle')
+		d3.select(node).select('g.'+teamData.code).selectAll('g.team-player')
+			.append('text')
+				.attr({
+					class: 'player-stat',
+					y: 45,
+				})
+				.text((d,i) => {
+					const units = {
+						age: 'years',
+						value: '€',
+						goals: 'goals',
+						caps: 'games',
+						height: 'm'
+					}
+					if (this.props.criteria === 'value') {
+						const format = d3.format(",.0f");
+						return format(d[this.props.criteria])+ ' '+units[this.props.criteria];
+					}
+					return d[this.props.criteria]+ ' '+units[this.props.criteria];
+				});
+
+		d3.select(node).selectAll('g.'+teamData.code+' g.team-player')
 			.transition()
 			.duration(1000)
 			// .delay((d,i) => {return 200*i})
 			.attr({
-				cx: d => {return this.props.scales.x(d[this.props.criteria])}
+				transform: d=> {
+					return 'translate('+this.props.scales.x(d[this.props.criteria])+',0)';
+				} 
 			});
 	}
 
@@ -230,20 +327,18 @@ export default class TeamVisualization extends Component {
 			.attr({
 				x: this.props.scales.x(mean)
 			})
-			.text(d3.format(",.2f")(mean));
+			.text(() => {
+				const units = {
+					age: 'years',
+					value: '€',
+					goals: 'goals',
+					caps: 'games',
+					height: 'm'
+				}
+				return d3.format(",.2f")(mean) + " " + units[this.props.criteria];
+			});
 
 	}
-
-	// getSelectedTeamsLabel() {
-	// 	console.log("VIZ TEAMS", this.props.selectedTeams);
-	// 	return this.props.selectedTeams.map(team => {
-	// 		return (
-	// 			<div className="team-label">
-	// 				{team}
-	// 			</div>
-	// 		);
-	// 	})
-	// }
 
 	render() {
 		return (

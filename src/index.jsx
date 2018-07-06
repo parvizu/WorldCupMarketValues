@@ -16,17 +16,17 @@ export default class WorldCupMarketValue extends Component {
 
 		this.state = {
 			rosters: wcRosters,
-			selectedTeams: ['Mexico', 'Spain'],
+			selectedTeams: ['Mexico', 'Uruguay', 'France', 'Brazil', 'Belgium'],
 			selectedRosters: [],
 			criteria: 'value',
 			scales: {},
 			specs: {
-				teamHeight: 80,
+				teamHeight: 90,
 				vizWidth: 1000,
 				labelWidth: 100
 			},
 			minimums: {
-				age: 16,
+				age: 18,
 				caps: 0,
 				value: 0,
 				height: 1.6,
@@ -87,7 +87,7 @@ export default class WorldCupMarketValue extends Component {
 
 		const xScale = d3.scale.linear()
 			.domain([this.state.minimums[criteria],maxValue])
-			.range([25, (this.state.specs.vizWidth+25)]);
+			.range([50, (this.state.specs.vizWidth+25)]);
 
 		const yScale = d3.scale.ordinal()
 			.domain(selectedTeams)
@@ -129,6 +129,14 @@ export default class WorldCupMarketValue extends Component {
 	getMenuOptions() {
 		const options = ['value','age', 'caps','height','goals'];
 
+		const labels = {
+			value: 'Market Value  (€)',
+			age: 'Player\'s Age  (years)',
+			caps: 'Games Played',
+			height: 'Player\'s Height  (meters)',
+			goals: 'Goals Scored'
+		}
+
 		return options.map(opt => {
 
 			const classes = classNames({
@@ -136,7 +144,7 @@ export default class WorldCupMarketValue extends Component {
 				  'selected': opt === this.state.criteria
 			  });
 			return (
-				<li className={classes} onClick={this.handleMenuClick} data-value={opt}>{opt}</li>
+				<li className={classes} onClick={this.handleMenuClick} data-value={opt}>{labels[opt]}</li>
 			)
 		})
 
@@ -230,20 +238,19 @@ export default class WorldCupMarketValue extends Component {
 			return this.state.selectedTeams.indexOf(team.country) !== -1; 
 		});
 
-		console.log(1,teams);
 		const selectedTeams = teams.map(team => {
 			return team.country;
-		})
-		console.log(2, selectedTeams);
+		});
+
 		const width = this.state.specs.vizWidth + this.state.specs.labelWidth + 50;
-		const height = this.state.selectedTeams.length * this.state.specs.teamHeight + 50;
+		const height = this.state.selectedTeams.length * this.state.specs.teamHeight+50;
 
 		// <div className="teams">{this.getTeamsMenu()}</div>
 		// console.log("INDEX TEAMS", selectedTeams);
 		return (
 			<div>
 				<div className="main-desc">
-					Lorem ipsum
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sed pellentesque orci. Mauris aliquam interdum libero quis sodales. Ut lobortis non eros a venenatis. Sed accumsan ex a congue facilisis. Sed ut magna fringilla, molestie dolor sed, tempor turpis. Etiam id sem et quam imperdiet dapibus a a justo. Mauris interdum odio metus, eu faucibus turpis aliquam sed. Nulla facilisi. Praesent tristique sed ipsum vel rutrum.
 				</div>
 				<div className="teams-menu">
 					{ this.getGroupTeams() }
