@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import d3 from 'd3';
 import classNames from 'classnames';
 
-import styles from './TeamVisualization.scss';
+import styles from './TeamVisualization.css';
 
 export default class TeamVisualization extends Component {
 	

@@ -1,0 +1,87 @@
+svg.team-visualization {
+    border: solid 25px rgba(0,0,0,.05);
+}
+
+.country-name {
+	width: 100px;
+}
+
+.country-section {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.team-player {
+	fill: rgba(0,0,0,.25);
+}
+
+.team-player:hover {
+	cursor: pointer;
+	/*fill: red;*/
+}
+
+
+
+.team-label .selected-player-name,
+.team-label .selected-player-stat  {
+	font-size: 7pt;
+	font-family: Helvetica
+}
+
+
+.team-visualization .axis {
+	margin-left: 100px;
+}
+
+.team-visualization .axis .tick text {
+	text-anchor: middle;
+	font-size: 6pt;
+}
+
+.team-visualization .axis .tick line {
+	stroke: rgba(0,0,0,.35);
+}
+
+.team-mean {
+	fill: gray;
+	font-size: 8pt;
+	font-family: helvetica;
+}
+
+
+
+
+.team .team-player text {
+    font-size: 10pt;
+    fill: black;
+    font-family: WCFont;
+    text-anchor: middle;
+    display: none;
+}
+
+.team-player:hover circle {
+    fill: rgba(0,116,177,.8	);
+}
+
+.team-player:hover text {
+    display: inline-block;
+}
+
+.team-player.selected circle {
+	fill: #0074B1;
+}
+
+.team-player.selected text {
+	display: inline-block;
+}
+
+
+
+
+
+g.team-label text.team-label-title {
+	font-size: 14pt;
+    font-weight: 500;
+    font-family: WCFont;
+}
+	

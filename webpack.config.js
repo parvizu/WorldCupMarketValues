@@ -1,5 +1,12 @@
 var path = require('path');
 var ROOT_PATH = path.resolve(__dirname);
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
+	template: __dirname + '/index.html',
+	filename: 'index.html',
+	inject: 'body'
+});
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
 	entry: [ROOT_PATH +'/src/index.jsx'],
@@ -22,8 +29,16 @@ module.exports = {
 		        loaders: ["style-loader", "css-loader"]
 		    },
 		    {
-	          test: /\.woff2?$|\.ttf$|\.eot$|\.otf$|\.jpg$|\.png$|\.svg$/,
-	          loader: 'file-loader?name=[name].[ext]'
+	          	test: /\.woff2?$|\.ttf$|\.eot$|\.otf$|\.jpg$|\.png$|\.svg$/,
+	          // loader: 'file-loader?name=[name].[ext]'
+	          	use: [
+	                {
+	                    loader: 'file-loader',
+	                    options: {
+	                        name: '[path][name]-[hash:8].[ext]'
+	                    },
+	                },
+	            ]
 	        },
 	        { test: /\.json$/, loader: "json-loader" },
 		]
@@ -32,6 +47,10 @@ module.exports = {
     	extensions: ['.js', '.jsx', '.json'],
   	},
 
+  	plugins: [
+		HTMLWebpackPluginConfig,
+		new ExtractTextPlugin("./style.css", {allChunks: true})],
+
 	// https://webpack.github.io/docs/configuration.html#devtool
-    devtool: '#inline-source-map'
+    // devtool: '#inline-source-map'
 }

@@ -6,7 +6,8 @@ body {
 @font-face {
     font-family: 'WCFont';
     /*font-weight: $font-weight-regular;*/
-    src: url("/WCFont.ttf");
+    /*src: url("/WCFont.ttf");*/
+    src: local('WCFont'), url(../WCFont.ttf) format('truetype');
 }
 
 .header {
@@ -87,12 +88,11 @@ img#fifa-logo {
 }
 
 
-
 .footer {
-    height: 35px;
+    height: 75px;
     background-color: #015386;
     width: 100%;
-    margin-top: 30px;
+    margin-top: 70px;
     text-align: center;
     vertical-align: middle;
     color: rgba(255,255,255,1);
@@ -108,23 +108,50 @@ img#fifa-logo {
 }
 
 .footer > div {
-    margin-top: 5px;
-    margin: 5px 20px 0px 20px;
+    /* margin-top: 5px; */
+    margin: 0px 20px 0px 20px;
     display: inline-block;
 }
 
 .footer a {
 	text-decoration: none;
 	color: white;
-	margin-left: 10px;
+	/*margin-left: 10px;*/
 }
 
 .footer .links {
     float: left;
     left: 50px;
     position: relative;
+    text-align: left;
 }
 
+.footer .links, 
+.footer .credits {
+    margin: 20px;
+    margin-right: 50px;
+    margin-top: 25px;
+}
+
+.footer .social {
+    margin: 15px;
+}
+
+
+.footer .projects {
+    float: left;
+    margin-left: 25px;
+}
+.footer .projects img {
+    height: 50px;
+    position: relative;
+    /* top: -5px; */
+    border-radius: 2px;
+    margin-top: 7px;
+}
+.footer .projects div {
+	margin-top: 2px;
+}
 
 
 
@@ -140,8 +167,31 @@ img#fifa-logo {
 }
 
 .main-desc {
-    margin: 20px 100px 50px 100px;
-    /* max-width: 800px; */
+    margin: 0px 100px 20px 100px;
+     /*max-width: 800px; */
+    /*text-align: left;*/
+    font-size: 9pt;
+}
+
+.main-desc span {
+	font-weight: 700;
+	font-family: WCFont;
+	font-size: 11pt;
+
+}
+
+.main-desc div {
+    display: inline-block;
+    width: 600px;
+    vertical-align: top;
+    text-align: left;
+    margin: 20px;
+}
+
+.main-desc ul {
+    /*margin: 0px 30px;*/
+    display: inline-block;
+    text-align: left;
 }
 
 
@@ -185,7 +235,13 @@ div.teams-menu {
     /* margin: 0 auto; */
     /* text-align: left; */
     /* float: left; */
-    margin-top: 25px;
+    margin-top: 0px;
+}
+
+.section-title {
+    font-size: 9pt;
+    /* text-align: left; */
+    color: gray;
 }
 
 .teams-menu .groups {

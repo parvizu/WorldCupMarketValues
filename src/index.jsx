@@ -7,7 +7,8 @@ import TeamVisualization from './TeamVisualization';
 import wcRosters from '../data/wcrosters.json';
 
 import classNames from 'classnames';
-import styles from './styles.scss';
+import styles from './styles.css';
+// import fonts from '../WCFont.ttf';
 
 export default class WorldCupMarketValue extends Component {
 	
@@ -130,9 +131,9 @@ export default class WorldCupMarketValue extends Component {
 		const options = ['value','age', 'caps','height','goals'];
 
 		const labels = {
-			value: 'Market Value  (€)',
+			value: 'Market Value  (€)*',
 			age: 'Player\'s Age  (years)',
-			caps: 'Games Played',
+			caps: 'Experience (games)',
 			height: 'Player\'s Height  (meters)',
 			goals: 'Goals Scored'
 		}
@@ -181,7 +182,7 @@ export default class WorldCupMarketValue extends Component {
 				'selected': this.state.selectedTeams.indexOf(team.country) !== -1
 			});
 
-			const imgSrc = '/img/'+team.code+'.png';
+			const imgSrc = './img/'+team.code+'.png';
 			return (
 				<li className={classes} onClick={this.handleTeamClick} data-value={team.country}>
 					<img src={imgSrc} data-value={team.country}/>
@@ -209,7 +210,7 @@ export default class WorldCupMarketValue extends Component {
 				'teams-menu-option': true,
 				'selected': this.state.selectedTeams.indexOf(team.country) !== -1
 			});
-			const imgSrc = '/img/'+team.code+'.png';
+			const imgSrc = './img/'+team.code+'.png';
 			groupTeams[team.group].push(
 				<li className={classes} onClick={this.handleTeamClick} data-value={team.country}>
 					<img src={imgSrc} data-value={team.country}/>
@@ -250,9 +251,26 @@ export default class WorldCupMarketValue extends Component {
 		return (
 			<div>
 				<div className="main-desc">
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sed pellentesque orci. Mauris aliquam interdum libero quis sodales. Ut lobortis non eros a venenatis. Sed accumsan ex a congue facilisis. Sed ut magna fringilla, molestie dolor sed, tempor turpis. Etiam id sem et quam imperdiet dapibus a a justo. Mauris interdum odio metus, eu faucibus turpis aliquam sed. Nulla facilisi. Praesent tristique sed ipsum vel rutrum.
+					<div>
+					Futbol is the most popular sport on the planet. Every country has local league and cup tournaments. There are continental tournaments with the best clubs of every country. Players from all around the world play in countries different than their own. 
+					<br/><br/>
+					 Every 4 years the futbol world comes together and competes every player elegible to represent their home country. The top futbol countries of every continent send their choice of 23 players to compete for the ultimate glory of being the FIFA World Cup Champion. This is not an easy feat and it has only been achieved by 8 countries in history.
+					</div>
+					<div>
+						<span>World Cup Squads Breakdown</span> allows users to compare the players in each 2018 World Cup roster based on 5 different criteria:
+
+						<ul>
+							<li><span>Market Value</span>  - The transfer value of each player if they were to switch clubs.</li>
+							<li><span>Age</span>  - Usually futbol players peak between 24 and 28 years old. Playing the World Cup at the right moment matters.</li>
+							<li><span>Experience</span>  - Games played with their National Teams in any international tournament or friendly game.</li>
+							<li><span>Height</span>  - Futbol is a physical sport, height is not deterministic but it does factor in.</li>
+							<li><span>Goals</span>  - Amount of goals scored for the National Teams.</li>
+						</ul>
+					</div>
+					
 				</div>
 				<div className="teams-menu">
+					<div className="section-title">Click on the flag to select a country</div>
 					{ this.getGroupTeams() }
 				</div>
 				<div className="main-content">
@@ -268,6 +286,11 @@ export default class WorldCupMarketValue extends Component {
 						minimums={this.state.minimums}
 						criteria={this.state.criteria} 
 						size={[width,height]}/>
+					<div className="legend">
+						* Market Values according to TransferMarkt.com
+						<br/>
+						** All data was gathered before the start of the Russia 2018 World Cup.
+					</div>
 				</div>
 			</div>
 		);
